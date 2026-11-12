@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro · Early Access · Casa Précis</title>
+<meta name="description" content="Un acceso reservado para ti. Early Access Black Month, 12 y 13 de noviembre.">
+<meta property="og:title" content="Black Month · Early Access">
+<meta property="og:description" content="Un acceso reservado para ti. 12 y 13 de noviembre, Calle 109 # 3-15-88.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://casaprecis.github.io/earlyaccess/registro/">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://lh3.googleusercontent.com/d/10kepQEG8skz58Ajr4F8UsGlgFOtqBvgN=w900">
+<meta property="og:image:width" content="900">
+<meta property="og:image:height" content="1125">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Mulish:wght@400;600&family=Allura&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2ebe1;
+    --paper-2:#f7f2ea;
+    --brown:#4f1d12;
+    --red:#e01b22;
+    --line:rgba(79,29,18,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--brown);font-family:'Mulish',sans-serif;-webkit-font-smoothing:antialiased}
+  .btn{
+    display:inline-block;cursor:pointer;border:none;
+    background:var(--brown);color:var(--paper-2);
+    font-family:'Archivo Narrow',sans-serif;font-weight:700;
+    font-size:17px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+    padding:16px 30px;border-radius:2px;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:hover{background:#3d150c}
+  .btn:active{transform:scale(.98)}
+  .sheet{
+    background:var(--paper-2);width:100%;max-width:520px;
+    padding:30px 26px 28px;position:relative;
+  }
+  .sheet h2{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:26px;letter-spacing:.04em;text-transform:uppercase;text-align:center}
+  .script{font-family:'Allura',cursive;color:var(--red);font-size:40px;text-align:center;line-height:1;margin-top:2px}
+  .rule{height:2px;background:var(--red);width:60%;margin:8px auto 20px;border-radius:2px;opacity:.85}
+
+  label{display:block;font-family:'Archivo Narrow',sans-serif;font-weight:500;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 6px}
+  input[type=text],input[type=tel],input[type=email],select{
+    width:100%;font-family:'Mulish',sans-serif;font-size:16px;color:var(--brown);
+    background:transparent;border:none;border-bottom:1.5px solid var(--line);
+    padding:9px 2px;border-radius:0;outline:none;-webkit-appearance:none;appearance:none;
+  }
+  input:focus,select:focus{border-bottom-color:var(--red)}
+  .dias{display:flex;gap:10px}
+  .dias label.opt{
+    flex:1;margin:0;text-align:center;cursor:pointer;
+    border:1.5px solid var(--line);padding:12px 6px;border-radius:2px;
+    font-size:15px;letter-spacing:.1em;transition:all .15s ease;
+  }
+  .dias input{position:absolute;opacity:0;pointer-events:none}
+  .dias label.opt:has(input:checked){background:var(--brown);border-color:var(--brown);color:var(--paper-2)}
+  .check{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:12.5px;line-height:1.45;text-transform:none;letter-spacing:0;font-family:'Mulish',sans-serif}
+  .check input{margin-top:3px;accent-color:var(--brown);width:16px;height:16px;flex:none}
+  .submit{width:100%;margin-top:22px}
+  .err{color:var(--red);font-size:13px;margin-top:10px;text-align:center;min-height:18px}
+  .hidden{display:none}
+
+  .ok{text-align:center;padding:20px 0 6px}
+  .ok p{font-size:16px;line-height:1.55;margin-top:6px}
+  .solo{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px 40px}
+  .solo .sheet{border-radius:6px;box-shadow:0 6px 30px rgba(79,29,18,.08)}
+  .fecha{text-align:center;font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:16px;letter-spacing:.12em;text-transform:uppercase;margin:-6px 0 6px}
+  .pie{text-align:center;font-family:'Archivo Narrow',sans-serif;font-size:12px;letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;margin-top:22px;opacity:.8}
+</style>
+</head>
+<body>
+<main class="solo">
+  <div class="sheet" aria-labelledby="titulo">
+    <div id="paso-form">
+      <h2 id="titulo">Black Month</h2>
+      <div class="script">Early Access</div>
+      <div class="rule"></div>
+      <p class="fecha">12 y 13 de noviembre</p>
+
+      <form name="early-access-black-month" id="form" novalidate>
+        <p class="hidden"><label>No llenar: <input name="bot-field"></label></p>
+
+        <label for="nombre">Nombre y apellido</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+
+        <label for="documento">Cédula / documento</label>
+        <input id="documento" name="documento" type="text" inputmode="text" autocomplete="off" required>
+
+        <label for="celular">Celular / WhatsApp</label>
+        <input id="celular" name="celular" type="tel" autocomplete="tel" placeholder="+57 300 000 0000" required>
+
+        <label for="correo">Correo</label>
+        <input id="correo" name="correo" type="email" autocomplete="email" required>
+
+        <label>¿Qué día nos visitas?</label>
+        <div class="dias">
+          <label class="opt"><input type="radio" name="dia" value="Jueves 12 de noviembre" required><span>12 nov</span></label>
+          <label class="opt"><input type="radio" name="dia" value="Viernes 13 de noviembre"><span>13 nov</span></label>
+          <label class="opt"><input type="radio" name="dia" value="Ambos días"><span>Ambos</span></label>
+        </div>
+
+        <label for="acompanantes">¿Vienes acompañada?</label>
+        <select id="acompanantes" name="acompanantes">
+          <option value="Sola">Vengo sola</option>
+          <option value="+1">+1</option>
+        </select>
+
+        <label class="check"><input type="checkbox" name="autorizacion" value="Sí" required>
+          <span>Autorizo a Casa Précis a tratar mis datos para gestionar mi registro y enviarme información de sus eventos, según la Ley 1581 de 2012.</span>
+        </label>
+
+        <button class="btn submit" type="submit" id="enviar">Registrarme</button>
+        <p class="err" id="err"></p>
+      </form>
+    </div>
+
+    <div id="paso-ok" class="ok hidden">
+      <h2>¡Listo!</h2>
+      <div class="script">te esperamos</div>
+      <div class="rule"></div>
+      <p>Tu acceso quedó reservado. Nos encantará verte por allá.</p>
+    </div>
+    <p class="pie">Calle 109 # 3 - 15 - 88 &nbsp;·&nbsp; 10 a. m. a 7 p. m.</p>
+  </div>
+</main>
+
+<script>
+  const form = document.getElementById('form');
+  const btn = document.getElementById('enviar');
+  const err = document.getElementById('err');
+  const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSfSM8mTNpCXvG5Ip8sMl1bP9z4v025BVq4ZayRdPyxMU95j6A/formResponse';
+  const MAP = {nombre:'entry.1844400999', documento:'entry.507187734', celular:'entry.269933923', correo:'entry.1501853846', dia:'entry.1670511886', acompanantes:'entry.66844474', autorizacion:'entry.2029191896'};
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    err.textContent = '';
+    if (!form.checkValidity()) {
+      const bad = form.querySelector(':invalid');
+      err.textContent = bad && bad.type === 'checkbox' ? 'Necesitamos tu autorización para registrarte.' : bad && bad.type === 'radio' ? 'Elige qué día nos visitas.' : 'Revisa que todos los datos estén completos.';
+      if (bad && bad.focus) bad.focus();
+      return;
+    }
+    if (form.elements['bot-field'].value) return;
+    const fd = new FormData(form);
+    const body = new URLSearchParams();
+    for (const [k, id] of Object.entries(MAP)) body.append(id, (fd.get(k) || '').toString().trim());
+    body.append('entry.1905665576', 'Link solo formulario');
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    fetch(GF, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+    .then(() => {
+      document.getElementById('paso-form').classList.add('hidden');
+      document.getElementById('paso-ok').classList.remove('hidden');
+    })
+    .catch(() => {
+      err.textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo otra vez.';
+      btn.disabled = false; btn.textContent = 'Registrarme';
+    });
+  });
+</script>
+</body>
+</html>
