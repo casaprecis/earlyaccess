@@ -88,9 +88,6 @@
         <label for="nombre">Nombre y apellido</label>
         <input id="nombre" name="nombre" type="text" autocomplete="name" required>
 
-        <label for="documento">Cédula / documento</label>
-        <input id="documento" name="documento" type="text" inputmode="text" autocomplete="off" required>
-
         <label for="celular">Celular / WhatsApp</label>
         <input id="celular" name="celular" type="tel" autocomplete="tel" placeholder="+57 300 000 0000" required>
 
@@ -134,7 +131,7 @@
   const btn = document.getElementById('enviar');
   const err = document.getElementById('err');
   const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSfSM8mTNpCXvG5Ip8sMl1bP9z4v025BVq4ZayRdPyxMU95j6A/formResponse';
-  const MAP = {nombre:'entry.1844400999', documento:'entry.507187734', celular:'entry.269933923', correo:'entry.1501853846', dia:'entry.1670511886', acompanantes:'entry.66844474', autorizacion:'entry.2029191896'};
+  const MAP = {nombre:'entry.1844400999', celular:'entry.269933923', correo:'entry.1501853846', dia:'entry.1670511886', acompanantes:'entry.66844474', autorizacion:'entry.2029191896'};
   form.addEventListener('submit', e => {
     e.preventDefault();
     err.textContent = '';
