@@ -62,12 +62,14 @@
   .rule{height:2px;background:var(--red);width:60%;margin:8px auto 20px;border-radius:2px;opacity:.85}
 
   label{display:block;font-family:'Archivo Narrow',sans-serif;font-weight:500;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 6px}
-  input[type=text],input[type=tel],input[type=email],select{
+  input[type=text],input[type=tel],input[type=email],input[type=date],select{
     width:100%;font-family:'Mulish',sans-serif;font-size:16px;color:var(--brown);
     background:transparent;border:none;border-bottom:1.5px solid var(--line);
     padding:9px 2px;border-radius:0;outline:none;-webkit-appearance:none;appearance:none;
   }
   input:focus,select:focus{border-bottom-color:var(--red)}
+  input[type=date]{min-height:42px}
+  .hint{font-size:12.5px;opacity:.7;margin-top:6px}
   .dias{display:flex;gap:10px}
   .dias label.opt{
     flex:1;margin:0;text-align:center;cursor:pointer;
@@ -117,12 +119,9 @@
         <label for="correo">Correo</label>
         <input id="correo" name="correo" type="email" autocomplete="email" required>
 
-        <label>¿Qué día nos visitas?</label>
-        <div class="dias">
-          <label class="opt"><input type="radio" name="dia" value="Jueves 12 de noviembre" required><span>12 nov</span></label>
-          <label class="opt"><input type="radio" name="dia" value="Viernes 13 de noviembre"><span>13 nov</span></label>
-          <label class="opt"><input type="radio" name="dia" value="Ambos días"><span>Ambos</span></label>
-        </div>
+        <label for="fecha">¿Qué día nos visitas?</label>
+        <input id="fecha" name="fecha" type="date" min="2026-11-13" max="2026-12-05" required>
+        <p class="hint">Del 13 de noviembre al 5 de diciembre</p>
 
         <label for="acompanantes">¿Vienes acompañada?</label>
         <select id="acompanantes" name="acompanantes">
@@ -144,6 +143,7 @@
       <div class="script">te esperamos</div>
       <div class="rule"></div>
       <p>Tu acceso quedó reservado. Nos encantará verte por allá.</p>
+      <p class="datos" id="ok-fecha"></p>
     </div>
   </div>
 </div>
@@ -161,17 +161,24 @@
   const err = document.getElementById('err');
   const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSfSM8mTNpCXvG5Ip8sMl1bP9z4v025BVq4ZayRdPyxMU95j6A/formResponse';
   const MAP = {nombre:'entry.1844400999', celular:'entry.269933923', correo:'entry.1501853846', dia:'entry.1670511886', acompanantes:'entry.66844474', autorizacion:'entry.2029191896'};
+  const fechaEl = document.getElementById('fecha');
+  const hoy = new Date(); const iso = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  if (iso(hoy) > fechaEl.min && iso(hoy) <= fechaEl.max) fechaEl.min = iso(hoy);
+  const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const bonita = v => { const [y,m,d] = v.split('-').map(Number); const f = new Date(y, m-1, d); const t = DIAS[f.getDay()] + ' ' + d + ' de ' + MESES[m-1]; return t.charAt(0).toUpperCase() + t.slice(1); };
   form.addEventListener('submit', e => {
     e.preventDefault();
     err.textContent = '';
     if (!form.checkValidity()) {
       const bad = form.querySelector(':invalid');
-      err.textContent = bad && bad.type === 'checkbox' ? 'Necesitamos tu autorización para registrarte.' : bad && bad.type === 'radio' ? 'Elige qué día nos visitas.' : 'Revisa que todos los datos estén completos.';
+      err.textContent = bad && bad.type === 'checkbox' ? 'Necesitamos tu autorización para registrarte.' : bad && bad.id === 'fecha' ? 'Elige un día entre el 13 de noviembre y el 5 de diciembre.' : 'Revisa que todos los datos estén completos.';
       if (bad && bad.focus) bad.focus();
       return;
     }
     if (form.elements['bot-field'].value) return;
     const fd = new FormData(form);
+    fd.set('dia', bonita(fechaEl.value));
     const body = new URLSearchParams();
     for (const [k, id] of Object.entries(MAP)) body.append(id, (fd.get(k) || '').toString().trim());
     body.append('entry.1905665576', 'Web Early Access');
@@ -180,6 +187,7 @@
     .then(() => {
       document.getElementById('paso-form').classList.add('hidden');
       document.getElementById('paso-ok').classList.remove('hidden');
+      document.getElementById('ok-fecha').textContent = 'Te esperamos el ' + fd.get('dia').toLowerCase();
     })
     .catch(() => {
       err.textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo otra vez.';
